@@ -1,0 +1,149 @@
+/* Broker Banner Widget Styles */
+
+.broker-banner-container {
+    width: 100%;
+    padding: 0px 0px;
+}
+
+.broker-banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.broker-banner-text {
+    display: flex;
+    flex-direction: column;
+    width: 43%;
+    flex-shrink: 0;
+}
+
+.broker-banner-image {
+    width: 50%; 
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reverse columns when enabled */
+.broker-banner-content.reverse-columns {
+    flex-direction: row-reverse;
+}
+
+.broker-banner-heading {
+    font-weight: 700;
+    line-height: 1.2;
+    color: #2d2d2d;
+}
+
+.broker-banner-heading h2 {
+    padding-bottom: 0px;
+    letter-spacing: 0px !important;
+    line-height: 48px !important;
+}
+
+.broker-banner-heading p {
+    font-family: 'avenir-heavy';
+}
+
+.banner-left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.banner-left-section p {
+    margin: 0px;
+    line-height: 24px;
+    font-family: 'avenir-light';
+}
+
+.broker-banner-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.broker-banner-button .button-icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.broker-banner-button .button-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.broker-banner-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.broker-banner-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .broker-banner-text,
+    .broker-banner-image {
+        width: 100% !important;
+    }
+
+    .broker-banner-heading {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .broker-banner-container {
+        padding: 40px 15px;
+    }
+
+    .broker-banner-heading {
+        font-size: 30px;
+    }
+
+    .broker-banner-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .broker-banner-content {
+        flex-direction: column;
+    }
+    .banner-left-section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .broker-banner-content.reverse-columns {
+        flex-direction: column;
+    }
+
+    .broker-banner-heading {
+        font-size: 24px;
+    }
+
+    .broker-banner-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    .broker-banner-heading h2 {
+        font-size: 24px!important;
+            line-height: 30px !important;
+    }
+}

@@ -1,0 +1,25 @@
+@import '../variables';
+
+.footer-wrapper {
+    font-family: $Avenir-light;
+
+    p {
+        margin-bottom: 0px;
+        font-family: $Avenir-light;
+        color: #3b3a3b;
+        font-weight: 400;
+
+        a {
+            color: #3b3a3b;
+
+            &:hover {
+                text-decoration: underline !important;
+                color: $primary;
+            }
+        }
+    }
+}
+
+.copyright {
+    font-family: $Avenir-light;
+}

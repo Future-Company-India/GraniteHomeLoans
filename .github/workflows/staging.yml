@@ -1,0 +1,65 @@
+# This is a workflow to compile and deploy to WPEngine Staging
+
+name: Havenview Deployment Pipeline For Staging
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - develop
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  NOTIFICATION_EMAIL: "projectdevelopment@futurecompany.in"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Set up PHP and Composer
+      - name: Setup PHP with Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4 # Use the PHP version required by your project
+          tools: composer
+
+      # Install Composer dependencies
+      - name: Install Composer dependencies
+        run: |
+          composer update --no-dev --prefer-dist --optimize-autoloader
+
+      # Deploy WordPress to WP Engine
+      - name: Deploy WordPress to WP Engine
+        uses: wpengine/github-action-wpe-site-deploy@v3
+        with:
+          # Keys, lint & url options
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
+          WPE_ENV: havenviewstg
+          # Deploy Options
+          REMOTE_PATH: "wp-content/"
+          SRC_PATH: "wp-content/"
+          PHP_LINT: FALSE
+          CACHE_CLEAR: TRUE
+
+      - name: Update version in WordPress DB
+        run: |
+          VERSION=$(date +'%Y.%m.%d.%H%M')  # e.g., 2025.04.03.1421
+          echo "Setting site_version to $VERSION"
+
+          echo "$WPE_SSHG_KEY_PRIVATE" > key.pem
+          chmod 600 key.pem
+
+          ssh -o StrictHostKeyChecking=no -i key.pem havenviewstg@havenviewstg.ssh.wpengine.net \
+            "cd /nas/content/live/havenviewstg && wp option update site_version '$VERSION' || wp option add site_version '$VERSION'"
+        env:
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}

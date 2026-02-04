@@ -1,0 +1,144 @@
+/* Dynamic Rows Widget Styles */
+
+.dynamic-rows-container {
+    width: 100%;
+    border-top: 2px solid rgb(198, 198,198);
+    border-bottom: 2px solid rgb(198, 198,198);;
+}
+
+.dynamic-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.dynamic-row.has-divider {
+    border-bottom-color: #E0E0E0;
+    border-bottom-style: solid;
+}
+
+.dynamic-row:first-child {
+    padding-top: 0;
+}
+
+.dynamic-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dynamic-row-heading {
+    width: 35%;
+    background-color: #F5F5F5;
+    padding: 30px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    text-align: left;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.dynamic-row-content {
+    width: 65%;
+    background-color: #FFFFFF;
+    padding: 30px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555555;
+    flex-shrink: 0;
+    font-family: 'avenir-light';
+}
+
+.dynamic-row-content p {
+    margin: 0;
+}
+
+.dynamic-row-content p:last-child {
+    margin-bottom: 0;
+}
+
+.dynamic-row-content strong {
+    font-weight: 700;
+    color: #000000;
+}
+
+.dynamic-row-content ul,
+.dynamic-row-content ol {
+    margin: 0px 8px;
+    padding-left: 20px;
+}
+
+.dynamic-row-content ul {
+    list-style: disc;
+}
+.dynamic-row-content ol {
+    list-style: decimal;
+}
+
+.dynamic-row-content ul li,
+.dynamic-row-content ol li {
+    margin-bottom: 0px;
+    line-height: 1.6;
+}
+
+.dynamic-row-content ul li:last-child,
+.dynamic-row-content ol li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .dynamic-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dynamic-row-heading,
+    .dynamic-row-content {
+        width: 100% !important;
+    }
+
+    .dynamic-row-heading {
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    .dynamic-row-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dynamic-row {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .dynamic-row-heading {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .dynamic-row-content {
+        font-size: 14px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dynamic-row {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .dynamic-row-heading {
+        font-size: 16px;
+    }
+
+    .dynamic-row-content {
+        font-size: 13px;
+    }
+}

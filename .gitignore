@@ -1,0 +1,62 @@
+# Plugins
+wp-content/plugins/*
+!wp-content/plugins/advanced-custom-fields-pro/
+!wp-content/plugins/autoupdater/
+!wp-content/plugins/woocommerce-pos-pro/
+!wp-content/plugins/wp-analytify/
+!wp-content/plugins/havenview-core/
+!wp-content/plugins/custom-elementor-widgets/
+!wp-content/plugins/.gitkeep
+
+# MU Plugins
+wp-content/mu-plugins/*
+!wp-content/mu-plugins/havenview-globals
+!wp-content/mu-plugins/index.php
+
+# Themes
+wp-content/themes/*
+!wp-content/themes/coolair/
+!wp-content/themes/coolair-child/
+wp-content/themes/coolair-child/css/system
+!wp-content/themes/index.php
+!wp-content/themes/.gitkeep
+
+# Uploads
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep
+
+# Cache
+wp-content/cache/*
+
+# Vendor
+/vendor
+wp-content/vendor
+
+# Upgrade Files
+wp-content/upgrade
+
+# wp
+wp
+license.txt
+local-config.php
+wp-config.php
+wp-config-ddev.php
+
+# Logs
+*.log
+
+# WP-CLI
+wp-cli.local.yml
+
+# VS Code
+.idea
+.vscode
+
+# SQL
+*.sql
+!database.sql
+
+#node_modules
+node_modules
+
+.ddev

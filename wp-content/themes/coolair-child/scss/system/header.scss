@@ -1,0 +1,74 @@
+@import '../variables';
+@import '../mixins';
+
+.rtmega-menu-area {
+    ul.rtmega-megamenu {
+        .menu-item {
+            padding: 0px 14px;
+            display: flex;
+            align-items: center;
+
+            @include small-mobile {
+                display: block;
+                padding: 0px;
+            }
+
+            &:hover {
+                transition: .5s ease-in-out;
+            }
+
+            &.gh-primary-btn {
+                padding: 0px 5px;
+
+                @include small-mobile {
+                    padding: 0px 0px !important;
+                }
+
+                @include small-mobile {
+                    display: block;
+                }
+
+                &:first-child {
+                    padding-left: 14px;
+                }
+
+                a {
+                    @include small-mobile {
+                        padding: 8px 10px !important;
+                        text-align: center;
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+
+            &:last-child {
+                padding-right: 0px;
+            }
+
+            a {
+                font-family: $Avenir-light;
+                transition: inherit !important;
+
+                @include small-mobile {
+                    border: none !important;
+                    padding: 10px 0px !important;
+                }
+            }
+
+            &.menu-item-has-children {
+                .sub-menu {
+                    @include small-mobile {
+                        padding-top: 0px !important;
+                        padding-left: 5px !important;
+                    }
+
+                    .sub-menu-item {
+                        padding: 0px;
+
+                    }
+                }
+            }
+
+        }
+    }
+}

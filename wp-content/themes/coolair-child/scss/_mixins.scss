@@ -1,0 +1,104 @@
+@import "variables";
+
+@mixin xs-mobile {
+  @media screen and (max-width: 385px) {
+    @content;
+  }
+}
+
+// Define mixin for screens between 340px and 576px
+@mixin mobile {
+  @media screen and (max-width: 450px) {
+    @content;
+  }
+}
+
+// Define mixin for screens between 576px and 767px
+@mixin small-mobile {
+  @media screen and (max-width: 576px) {
+    @content;
+  }
+}
+
+// Define mixin for screens between 690px and 576px
+@mixin large-mobile {
+  @media screen and (max-width: 690px) {
+    @content;
+  }
+}
+
+// Define mixin for screens between 768px and 669px
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+// Define mixin for screens larger than 768px
+@mixin laptop {
+  @media screen and (max-width: 999px) {
+    @content;
+  }
+}
+
+// Define mixin for screens larger than 999px
+@mixin md-laptop {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+// Define mixin for screens larger than 1024px
+@mixin lg-laptop {
+  @media screen and (max-width: 1170px) {
+    @content;
+  }
+}
+
+// Define mixin for screens larger than 1170px
+@mixin xl-laptop {
+  @media screen and (max-width: 1280px) {
+    @content;
+  }
+}
+
+// Define mixin for screens larger than 1200px
+@mixin desktop {
+  @media screen and (max-width: 1380px) {
+    @content;
+  }
+}
+
+@mixin transition($trs) {
+  -webkit-transition: $trs;
+  -moz-transition: $trs;
+  -o-transition: $trs;
+  transition: $trs;
+}
+
+@mixin box-shadow($boxshadow) {
+  box-shadow: $boxshadow!important;
+  -webkit-box-shadow: $boxshadow;
+  -moz-box-shadow: $boxshadow;
+  -ms-box-shadow: $boxshadow;
+}
+
+@mixin filter($filter) {
+  filter: $filter;
+  -webkit-filter: $filter;
+  -ms-filter: $filter;
+  -moz-filter: $filter;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius!important;
+}
+@mixin transform($trsf) {
+  -webkit-transform: $trsf;
+  -moz-transform: $trsf;
+  -o-transform: $trsf;
+  transform: $trsf!important;
+}

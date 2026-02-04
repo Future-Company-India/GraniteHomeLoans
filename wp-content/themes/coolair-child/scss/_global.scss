@@ -1,0 +1,29 @@
+@import "fonts";
+@import "variables";
+@import "mixins";
+@import "buttons";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    margin-bottom: 0px;
+    padding: 0;
+    letter-spacing: 0px !important;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+.primary-text {
+    color: $primary;
+}
