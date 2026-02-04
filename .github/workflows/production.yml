@@ -1,6 +1,6 @@
 # This is a workflow to compile and deploy to WPEngine Production
 
-name: Havenview Deployment Pipeline For Production
+name: GraniteHomeLoans Deployment Pipeline For Production
 
 # Controls when the workflow will run
 on:

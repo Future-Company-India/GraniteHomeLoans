@@ -1,6 +1,6 @@
 # This is a workflow to compile and deploy to WPEngine Staging
 
-name: Havenview Deployment Pipeline For Staging
+name: GraniteHomeLoans Deployment Pipeline For Staging
 
 # Controls when the workflow will run
 on:

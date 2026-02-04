@@ -1,11 +1,11 @@
 <?php
 /**
- * Havenview custom mu-plugin.
+ * GraniteLoan custom mu-plugin.
  *
- * @package Havenview.
+ * @package GraniteLoan.
  */
 
-namespace Havenview;
+namespace GraniteLoan;
 
 // Load all of the libraries.
-require_once dirname( __FILE__ ) . '/havenview-globals/havenview-globals.php';
+require_once dirname( __FILE__ ) . '/graniteloan-globals/graniteloan-globals.php';
