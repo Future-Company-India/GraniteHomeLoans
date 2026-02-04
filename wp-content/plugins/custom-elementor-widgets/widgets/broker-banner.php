@@ -165,7 +165,7 @@ class Broker_Banner_Widget extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Heading', 'broker-banner' ),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'default' => esc_html__( 'Broker <span style="color:#3B9B39;">Driven</span><br>Fueled by <span style="color:#3B9B39;">Innovation</span>', 'broker-banner' ),
+                'default' => esc_html__( 'Broker Driven', 'broker-banner' ),
                 'placeholder' => esc_html__( 'Type your heading here', 'broker-banner' ),
             ]
         );

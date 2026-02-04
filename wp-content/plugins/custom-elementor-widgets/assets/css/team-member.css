@@ -1,0 +1,252 @@
+/* Team Members Elementor Widget Styles v1.3.0 */
+
+.team-members-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-member-card {
+    display: flex;
+    gap: 10px;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.team-member-image {
+    flex-shrink: 0;
+    width: 180px;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.team-member-info {
+    flex: 1;
+    padding: 24px 24px 24px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.member-name {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+.member-title {
+    font-size: 16px;
+    color: #4a5568;
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+}
+
+.member-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #48bb78;
+    font-size: 16px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-item:hover {
+    color: #38a169;
+    transform: translateX(3px);
+}
+
+.contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+}
+
+.contact-icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Custom Image Icon Support */
+.contact-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.phone-number-wrapper {
+    display: inline-flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.phone-number {
+    color: inherit;
+}
+
+.phone-label {
+    color: #2d3748;
+    font-size: 0.95em;
+}
+
+.secondary-phone .phone-label {
+    font-weight: 500;
+}
+
+.member-badge {
+    margin-top: 16px;
+}
+
+.badge-aaa {
+    display: inline-block;
+    background: #ffd700;
+    color: #2d3748;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tablet View */
+@media (max-width: 1024px) {
+
+    
+    .team-member-image {
+        width: 150px;
+        height: 200px;
+    }
+    
+    .team-member-info {
+        padding: 20px 20px 20px 0;
+    }
+    
+    .member-name {
+        font-size: 24px;
+    }
+    
+    .member-title {
+        font-size: 14px;
+    }
+    
+    .contact-item {
+        font-size: 14px;
+    }
+}
+
+/* Mobile View - Single Column Layout (as per Image 2) */
+@media (max-width: 768px) {
+    .team-members-container {
+        gap: 24px;
+    }
+    
+    .team-member-card {
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .team-member-image {
+        width: 100%;
+        height: 320px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .team-member-info {
+        padding: 24px;
+    }
+    
+    .member-name {
+        font-size: 26px;
+    }
+    
+    .member-title {
+        font-size: 15px;
+    }
+    
+    .contact-item {
+        font-size: 15px;
+    }
+}
+
+/* Extra Small Mobile Devices */
+@media (max-width: 480px) {
+    .team-members-container {
+        padding: 0px;
+    }
+    
+    .team-member-card {
+        max-width: 100%;
+    }
+    
+    .team-member-image {
+        height: 280px;
+    }
+    
+    .team-member-info {
+        padding: 20px;
+    }
+    
+    .member-name {
+        font-size: 24px;
+    }
+    
+    .member-title {
+        font-size: 14px;
+    }
+    
+    .contact-item {
+        font-size: 14px;
+    }
+    
+    .contact-item span {
+        word-break: break-word;
+    }
+    
+    .phone-number-wrapper {
+        flex-direction: row;
+    }
+}
+
+/* Elementor Editor Specific Styles */
+.elementor-editor-active .team-member-card {
+    cursor: pointer;
+}
+
+.elementor-editor-active .team-member-card:hover {
+    outline: 2px solid #93003c;
+}

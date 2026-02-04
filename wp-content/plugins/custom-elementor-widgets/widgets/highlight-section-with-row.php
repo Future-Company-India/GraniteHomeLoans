@@ -82,13 +82,13 @@ class Dynamic_Rows_Widget extends \Elementor\Widget_Base {
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'row_heading' => esc_html__( 'Eligibility requirements', 'cew' ),
-                        'row_content' => '<p><strong>Loan Purpose</strong><br>Re-finance of either owner occupied or investment of commercial properties</p><p><strong>Accepted Property Types</strong><br>Commercial Investment, or<br>Commercial Owner Occupied</p><p><strong>Excluded Property Types</strong></p><ul><li>Commercial property held in an SMSF</li><li>Construction</li><li>New commercial property purchase</li></ul>',
+                        'row_heading' => esc_html__( 'Heading 1', 'cew' ),
+                        'row_content' => 'This is content',
                         'show_divider' => 'yes',
                     ],
                     [
-                        'row_heading' => esc_html__( 'Fees', 'cew' ),
-                        'row_content' => '<ul><li>Nil - Application fee</li><li>At cost¹ - Commercial valuation fee</li><li>$595 + Disbursements - Lender Prep and Trust Review fee (Ex GST)¹</li><li>$250 - Account variation fee</li><li>$450 - Facility variation fee</li><li>1% of original loan amount within 36 months - Early termination fee</li></ul><p>1. Third party fees, including those from solicitors, are subject to Goods and Services Tax (GST) and quoted exclusive of GST.</p>',
+                        'row_heading' => esc_html__( 'Heading 2', 'cew' ),
+                        'row_content' => 'This is content',
                         'show_divider' => 'no',
                     ],
                 ],

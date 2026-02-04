@@ -44,7 +44,7 @@ class Icon_Heading_Widget extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Heading Text', 'cew' ),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'default' => esc_html__( 'Granite <span style="color:#3B9B39;">in action</span>', 'cew' ),
+                'default' => esc_html__( 'Hello World!', 'cew' ),
                 'placeholder' => esc_html__( 'Enter your heading', 'cew' ),
                 'dynamic' => [
                     'active' => true,
@@ -221,6 +221,75 @@ class Icon_Heading_Widget extends \Elementor\Widget_Base {
         );
 
         $this->end_controls_section();
+
+        // Style Section - Underline
+        $this->start_controls_section(
+            'underline_style_section',
+            [
+                'label' => esc_html__( 'Underline', 'cew' ),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'underline_color',
+            [
+                'label' => esc_html__( 'Underline Color', 'cew' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#28a745', // Default green color
+                'selectors' => [
+                    '{{WRAPPER}} .icon-heading-container' => '--icon-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'underline_height',
+            [
+                'label' => esc_html__( 'Height', 'cew' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 20,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 5,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .icon-heading-text::after' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'underline_spacing',
+            [
+                'label' => esc_html__( 'Top Spacing', 'cew' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 20,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 2,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .icon-heading-text::after' => 'margin-top: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     protected function render() {
@@ -234,7 +303,7 @@ class Icon_Heading_Widget extends \Elementor\Widget_Base {
         <?php if ( ! empty( $settings['heading_image']['url'] ) ) : ?>
         <div class="icon-heading-icon">
             <img src="<?php echo esc_url( $settings['heading_image']['url'] ); ?>"
-                alt="<?php echo esc_attr( $settings['heading_text'] ); ?>">
+                alt="<?php echo esc_attr( strip_tags( $settings['heading_text'] ) ); ?>">
         </div>
         <?php endif; ?>
 

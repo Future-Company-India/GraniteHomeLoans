@@ -45,10 +45,6 @@
     line-height: 48px !important;
 }
 
-.broker-banner-heading p {
-    font-family: 'avenir-heavy';
-}
-
 .banner-left-section {
     display: flex;
     align-items: center;
@@ -107,7 +103,7 @@
 
 @media (max-width: 768px) {
     .broker-banner-container {
-        padding: 40px 15px;
+        padding: 40px 0px;
     }
 
     .broker-banner-heading {

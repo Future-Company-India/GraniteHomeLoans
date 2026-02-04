@@ -24,6 +24,66 @@ p {
     margin-bottom: 0px;
 }
 
+ul {
+    list-style: disc !important;
+    margin-left: 10px;
+}
+
+ol {
+    list-style: decimal !important;
+    margin-left: 10px;
+}
+
 .primary-text {
     color: $primary;
+}
+
+.animation-style1 {
+    .title-inner {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .subtitle {
+            background-color: transparent;
+            padding: 0px;
+            border-radius: 0px;
+        }
+    }
+}
+
+.custom-table-warpper {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 12px;
+    color: #3b3a3a;
+
+    @include small-mobile {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #3b3a3a;
+        font-family: "avenir-light", sans-serif;
+        width: 140px;
+        min-width: 140px;
+        text-align: right;
+
+        @include small-mobile {
+            width: 100%;
+            min-width: 100%;
+            text-align: left;
+        }
+    }
+
+    div {
+        line-height: 26px;
+    }
 }

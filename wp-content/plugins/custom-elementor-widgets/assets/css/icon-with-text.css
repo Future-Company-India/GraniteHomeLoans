@@ -10,6 +10,7 @@
     align-items: center;
     gap: 15px;
     margin-bottom: 10px;
+    --icon-color: #3b9b39;
 }
 
 .icon-heading-icon {
@@ -49,14 +50,7 @@
     margin-top: 2px;
     width: 100%;
     height: 5px;
-    background-color: #3B9B39;
-}
-
-.icon-heading-underline {
-    height: 4px;
-    width: 100%;
-    background-color: #3B9B39;
-    border-radius: 2px;
+    background-color: var(--icon-color);
 }
 
 /* Responsive Design */
