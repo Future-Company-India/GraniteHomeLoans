@@ -1,0 +1,84 @@
+/* Calculator Columns - Elementor Widget Styling */
+
+.calculator-columns-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Center single card */
+.calculator-columns-container:has(.calculator-card:only-child) {
+    grid-template-columns: 1fr;
+    max-width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calculator-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #000;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 80px;
+}
+
+
+.calculator-title {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.4;
+    max-width: 80%;
+    color: #000;
+    font-family: 'avenir-light', sans-serif;
+}
+
+.calculator-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+
+.calculator-arrow img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Responsive - handled by Elementor controls but keeping fallback */
+@media (max-width: 767px) {
+    .calculator-columns-container {
+        grid-template-columns: 1fr;
+    }
+        /* Single card on mobile - still centered */
+    .calculator-columns-container:has(.calculator-card:only-child) {
+        max-width: 100%;
+    }
+        
+    .calculator-card {
+        padding: 25px 20px;
+    }
+    
+    .calculator-title {
+        font-size: 16px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .calculator-columns-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+        
+    /* Single card on tablet - centered */
+    .calculator-columns-container:has(.calculator-card:only-child) {
+        grid-template-columns: 1fr;
+        max-width: 50%;
+    }
+
+}
