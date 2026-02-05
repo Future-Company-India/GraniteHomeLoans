@@ -4,8 +4,9 @@ wp-content/plugins/*
 !wp-content/plugins/autoupdater/
 !wp-content/plugins/woocommerce-pos-pro/
 !wp-content/plugins/wp-analytify/
-!wp-content/plugins/havenview-core/
 !wp-content/plugins/custom-elementor-widgets/
+!wp-content/plugins/custom-fonts/
+!wp-content/plugins/duplicate-page/
 !wp-content/plugins/.gitkeep
 
 # MU Plugins

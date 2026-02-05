@@ -458,6 +458,124 @@ class Team_Members_Widget extends \Elementor\Widget_Base {
         
         $this->end_controls_section();
         
+        // Style Section - Photo/Image
+        $this->start_controls_section(
+            'image_style_section',
+            [
+                'label' => esc_html__('Photo', 'team-members-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+        
+        $this->add_responsive_control(
+            'image_width',
+            [
+                'label' => esc_html__('Width', 'team-members-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 500,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 180,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-image' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        
+        $this->add_responsive_control(
+            'image_height',
+            [
+                'label' => esc_html__('Height', 'team-members-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 600,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 240,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-image' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'image_object_fit',
+            [
+                'label' => esc_html__('Object Fit', 'team-members-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'cover',
+                'options' => [
+                    'cover' => esc_html__('Cover', 'team-members-elementor'),
+                    'contain' => esc_html__('Contain', 'team-members-elementor'),
+                    'fill' => esc_html__('Fill', 'team-members-elementor'),
+                    'none' => esc_html__('None', 'team-members-elementor'),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-image img' => 'object-fit: {{VALUE}};',
+                ],
+            ]
+        );
+        
+        $this->add_responsive_control(
+            'image_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'team-members-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'image_border',
+                'selector' => '{{WRAPPER}} .team-member-image',
+            ]
+        );
+        
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'image_box_shadow',
+                'selector' => '{{WRAPPER}} .team-member-image',
+            ]
+        );
+        
+        $this->add_group_control(
+            \Elementor\Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'image_css_filters',
+                'selector' => '{{WRAPPER}} .team-member-image img',
+            ]
+        );
+        
+        $this->end_controls_section();
+        
         // Style Section - Name
         $this->start_controls_section(
             'name_style_section',
@@ -740,6 +858,39 @@ class Team_Members_Widget extends \Elementor\Widget_Base {
                     <span><?php echo esc_html($member['member_email']); ?></span>
                 </a>
 
+                <?php if ($member['show_second_phone'] === 'yes' && !empty($member['second_phone'])): ?>
+                <!-- Phone group with single centered icon -->
+                <div class="phone-group">
+                    <span class="contact-icon phone-group-icon">
+                        <?php if ($icon_type === 'image' && !empty($settings['phone_icon_image']['url'])): ?>
+                        <img src="<?php echo esc_url($settings['phone_icon_image']['url']); ?>" alt="Phone" />
+                        <?php else: ?>
+                        <?php \Elementor\Icons_Manager::render_icon($settings['phone_icon'], ['aria-hidden' => 'true']); ?>
+                        <?php endif; ?>
+                    </span>
+                    <div class="phone-numbers">
+                        <a href="tel:<?php echo esc_attr(str_replace([' ', '(', ')'], '', $member['member_phone'])); ?>"
+                            class="contact-item phone no-icon">
+                            <span class="phone-number-wrapper">
+                                <span class="phone-number"><?php echo esc_html($member['member_phone']); ?></span>
+                                <?php if (!empty($member['phone_label'])): ?>
+                                <span class="phone-label"><?php echo esc_html(' ' . $member['phone_label']); ?></span>
+                                <?php endif; ?>
+                            </span>
+                        </a>
+                        <a href="tel:<?php echo esc_attr(str_replace([' ', '(', ')'], '', $member['second_phone'])); ?>"
+                            class="contact-item phone secondary-phone no-icon">
+                            <span class="phone-number-wrapper">
+                                <?php if (!empty($member['second_phone_label'])): ?>
+                                <span class="phone-label"><?php echo esc_html($member['second_phone_label']); ?></span>
+                                <?php endif; ?>
+                                <span class="phone-number"><?php echo esc_html(' ' . $member['second_phone']); ?></span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <?php else: ?>
+                <!-- Single phone with icon -->
                 <a href="tel:<?php echo esc_attr(str_replace([' ', '(', ')'], '', $member['member_phone'])); ?>"
                     class="contact-item phone">
                     <span class="contact-icon">
@@ -754,24 +905,6 @@ class Team_Members_Widget extends \Elementor\Widget_Base {
                         <?php if (!empty($member['phone_label'])): ?>
                         <span class="phone-label"><?php echo esc_html(' ' . $member['phone_label']); ?></span>
                         <?php endif; ?>
-                    </span>
-                </a>
-
-                <?php if ($member['show_second_phone'] === 'yes' && !empty($member['second_phone'])): ?>
-                <a href="tel:<?php echo esc_attr(str_replace([' ', '(', ')'], '', $member['second_phone'])); ?>"
-                    class="contact-item phone secondary-phone">
-                    <span class="contact-icon">
-                        <?php if ($icon_type === 'image' && !empty($settings['phone_icon_image']['url'])): ?>
-                        <img src="<?php echo esc_url($settings['phone_icon_image']['url']); ?>" alt="Phone" />
-                        <?php else: ?>
-                        <?php \Elementor\Icons_Manager::render_icon($settings['phone_icon'], ['aria-hidden' => 'true']); ?>
-                        <?php endif; ?>
-                    </span>
-                    <span class="phone-number-wrapper">
-                        <?php if (!empty($member['second_phone_label'])): ?>
-                        <span class="phone-label"><?php echo esc_html($member['second_phone_label']); ?></span>
-                        <?php endif; ?>
-                        <span class="phone-number"><?php echo esc_html(' ' . $member['second_phone']); ?></span>
                     </span>
                 </a>
                 <?php endif; ?>
