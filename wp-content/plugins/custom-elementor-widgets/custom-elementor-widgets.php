@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Custom Elementor Widgets
- * Description: Custom Elementor widgets (Broker Banner, Dynamic Rows, Icon Heading, Granite Slider, Team Members)
- * Version: 1.0.8
+ * Description: Custom Elementor widgets (Broker Banner, Dynamic Rows, Icon Heading, Granite Slider, Team Members, Calculator Columns, Custom Accordion)
+ * Version: 1.1.0
  * Author: Your Name
  */
 
@@ -31,6 +31,14 @@ function cew_register_widgets( $widgets_manager ) {
     // Register Team Members Widget
     require_once __DIR__ . '/widgets/team-member.php';
     $widgets_manager->register( new \Team_Members_Widget() );
+    
+    // Register Calculator Columns Widget
+    require_once __DIR__ . '/widgets/calculator-columns.php';
+    $widgets_manager->register( new \Calculator_Columns_Widget() );
+    
+    // Register Custom Accordion Widget
+    require_once __DIR__ . '/widgets/accordion.php';
+    $widgets_manager->register( new \Custom_Accordion_Widget() );
 }
 add_action( 'elementor/widgets/register', 'cew_register_widgets' );
 
@@ -43,7 +51,7 @@ function cew_enqueue_all_styles() {
         'cew-broker-banner-css',
         plugins_url( 'assets/css/broker-banner.css', __FILE__ ),
         [],
-        '1.0.8'
+        '1.1.0'
     );
     
     // Highlight Section with Row CSS
@@ -51,7 +59,7 @@ function cew_enqueue_all_styles() {
         'cew-highlight-section-css',
         plugins_url( 'assets/css/highlight-section-with-row.css', __FILE__ ),
         [],
-        '1.0.8'
+        '1.1.0'
     );
     
     // Icon with text CSS
@@ -59,7 +67,7 @@ function cew_enqueue_all_styles() {
         'cew-icon-with-text-css',
         plugins_url( 'assets/css/icon-with-text.css', __FILE__ ),
         [],
-        '1.0.8'
+        '1.1.0'
     );
     
     // Granite Slider CSS
@@ -67,7 +75,7 @@ function cew_enqueue_all_styles() {
         'cew-granite-slider-css',
         plugins_url( 'assets/css/granite-slider.css', __FILE__ ),
         [],
-        '1.0.8'
+        '1.1.0'
     );
     
     // Team Members CSS
@@ -75,7 +83,23 @@ function cew_enqueue_all_styles() {
         'cew-team-members-css',
         plugins_url( 'assets/css/team-member.css', __FILE__ ),
         [],
-        '1.0.8'
+        '1.1.0'
+    );
+    
+    // Calculator Columns CSS
+    wp_enqueue_style(
+        'cew-calculator-columns-css',
+        plugins_url( 'assets/css/calculator-columns.css', __FILE__ ),
+        [],
+        '1.1.0'
+    );
+    
+    // Custom Accordion CSS
+    wp_enqueue_style(
+        'cew-custom-accordion-css',
+        plugins_url( 'assets/css/accordion.css', __FILE__ ),
+        [],
+        '1.1.0'
     );
 }
 
@@ -95,9 +119,18 @@ function cew_enqueue_all_scripts() {
     // Granite Slider JavaScript
     wp_enqueue_script(
         'cew-granite-slider-js',
-        plugins_url( 'js/granite-slider.js', __FILE__ ),  // ← CORRECT: js is in root
+        plugins_url( 'js/granite-slider.js', __FILE__ ),
         [ 'jquery' ],
-        '1.0.8',
+        '1.1.0',
+        true
+    );
+    
+    // Custom Accordion JavaScript
+    wp_enqueue_script(
+        'cew-custom-accordion-js',
+        plugins_url( 'js/accordion.js', __FILE__ ),
+        [ 'jquery' ],
+        '1.1.0',
         true
     );
 }
