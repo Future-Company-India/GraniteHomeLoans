@@ -23,15 +23,15 @@ add_action('wp_enqueue_scripts', 'hv_enqueue_child_theme_styles');
 // add_filter('upload_dir', 'replace_upload_dir_local_to_prod');
 
 // function replace_asset_domain_local_to_prod($url) {
-//     $local_domain = 'https://fc-havenview.ddev.site'; 
-//     $prod_domain  = 'https://havenviewstg.wpengine.com';
+//     $local_domain = 'https://fc-graniteloan.ddev.site'; 
+//     $prod_domain  = 'https://graniteloanstg.wpengine.com';
 
 //     return str_replace($local_domain, $prod_domain, $url);
 // }
 
 // function replace_upload_dir_local_to_prod($upload) {
-//     $local_domain = 'https://fc-havenview.ddev.site';
-//     $prod_domain  = 'https://havenviewstg.wpengine.com';
+//     $local_domain = 'https://fc-graniteloan.ddev.site';
+//     $prod_domain  = 'https://graniteloanstg.wpengine.com';
 
 //     $upload['url'] = str_replace($local_domain, $prod_domain, $upload['url']);
 //     $upload['baseurl'] = str_replace($local_domain, $prod_domain, $upload['baseurl']);
