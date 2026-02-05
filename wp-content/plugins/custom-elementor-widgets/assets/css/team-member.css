@@ -73,7 +73,6 @@
 
 .contact-item:hover {
     color: #38a169;
-    transform: translateX(3px);
 }
 
 .contact-icon {
@@ -110,7 +109,6 @@
     display: inline-flex;
     align-items: baseline;
     flex-wrap: wrap;
-    gap: 4px;
 }
 
 .phone-number {
@@ -124,6 +122,32 @@
 
 .secondary-phone .phone-label {
     font-weight: 500;
+}
+
+/* Phone Group - Single Icon for Two Numbers */
+.phone-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.phone-group-icon {
+    align-self: center;
+}
+
+.phone-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.contact-item.no-icon {
+    padding-left: 0;
+}
+
+.contact-item.no-icon .contact-icon {
+    display: none;
 }
 
 .member-badge {

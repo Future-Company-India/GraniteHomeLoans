@@ -6,6 +6,8 @@ wp-content/plugins/*
 !wp-content/plugins/wp-analytify/
 !wp-content/plugins/graniteloan-core/
 !wp-content/plugins/custom-elementor-widgets/
+!wp-content/plugins/custom-fonts/
+!wp-content/plugins/duplicate-page/
 !wp-content/plugins/.gitkeep
 
 # MU Plugins
