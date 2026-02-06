@@ -39,6 +39,10 @@ function cew_register_widgets( $widgets_manager ) {
     // Register Custom Accordion Widget
     require_once __DIR__ . '/widgets/accordion.php';
     $widgets_manager->register( new \Custom_Accordion_Widget() );
+
+    // Register Document List Widget
+    require_once __DIR__ . '/widgets/doc-list-widget.php';
+	$widgets_manager->register( new \EDLW_Doc_List_Widget() );
 }
 add_action( 'elementor/widgets/register', 'cew_register_widgets' );
 
@@ -51,7 +55,7 @@ function cew_enqueue_all_styles() {
         'cew-broker-banner-css',
         plugins_url( 'assets/css/broker-banner.css', __FILE__ ),
         [],
-        '1.1.0'
+        DEPLOYMENT_VERSION
     );
     
     // Highlight Section with Row CSS
@@ -59,7 +63,7 @@ function cew_enqueue_all_styles() {
         'cew-highlight-section-css',
         plugins_url( 'assets/css/highlight-section-with-row.css', __FILE__ ),
         [],
-        '1.1.0'
+        DEPLOYMENT_VERSION
     );
     
     // Icon with text CSS
@@ -67,7 +71,7 @@ function cew_enqueue_all_styles() {
         'cew-icon-with-text-css',
         plugins_url( 'assets/css/icon-with-text.css', __FILE__ ),
         [],
-        '1.1.0'
+        DEPLOYMENT_VERSION
     );
     
     // Granite Slider CSS
@@ -75,7 +79,7 @@ function cew_enqueue_all_styles() {
         'cew-granite-slider-css',
         plugins_url( 'assets/css/granite-slider.css', __FILE__ ),
         [],
-        '1.1.0'
+        DEPLOYMENT_VERSION
     );
     
     // Team Members CSS
@@ -83,7 +87,7 @@ function cew_enqueue_all_styles() {
         'cew-team-members-css',
         plugins_url( 'assets/css/team-member.css', __FILE__ ),
         [],
-        '1.1.0'
+        DEPLOYMENT_VERSION
     );
     
     // Calculator Columns CSS
@@ -91,7 +95,7 @@ function cew_enqueue_all_styles() {
         'cew-calculator-columns-css',
         plugins_url( 'assets/css/calculator-columns.css', __FILE__ ),
         [],
-        '1.1.0'
+        DEPLOYMENT_VERSION
     );
     
     // Custom Accordion CSS
@@ -99,7 +103,15 @@ function cew_enqueue_all_styles() {
         'cew-custom-accordion-css',
         plugins_url( 'assets/css/accordion.css', __FILE__ ),
         [],
-        '1.1.0'
+        DEPLOYMENT_VERSION
+    );
+
+    // Custom Document List CSS
+    wp_enqueue_style(
+        'cew-custom-doc-list-widget-css',
+        plugins_url( 'assets/css/doc-list-widget.css', __FILE__ ),
+        [],
+        DEPLOYMENT_VERSION
     );
 }
 
@@ -121,7 +133,7 @@ function cew_enqueue_all_scripts() {
         'cew-granite-slider-js',
         plugins_url( 'js/granite-slider.js', __FILE__ ),
         [ 'jquery' ],
-        '1.1.0',
+        DEPLOYMENT_VERSION,
         true
     );
     
@@ -130,7 +142,7 @@ function cew_enqueue_all_scripts() {
         'cew-custom-accordion-js',
         plugins_url( 'js/accordion.js', __FILE__ ),
         [ 'jquery' ],
-        '1.1.0',
+        DEPLOYMENT_VERSION,
         true
     );
 }
