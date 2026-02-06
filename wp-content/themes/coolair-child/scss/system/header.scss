@@ -8,7 +8,8 @@
             display: flex;
             align-items: center;
 
-            @include small-mobile {
+
+            @include md-laptop {
                 display: block;
                 padding: 0px;
             }
@@ -20,20 +21,16 @@
             &.gh-primary-btn {
                 padding: 0px 5px;
 
-                @include small-mobile {
-                    padding: 0px 0px !important;
+                @include md-laptop {
+                    padding: 14px 0px 0px 0px !important;
                 }
 
-                @include small-mobile {
+                @include md-laptop {
                     display: block;
                 }
 
-                &:first-child {
-                    padding-left: 14px;
-                }
-
                 a {
-                    @include small-mobile {
+                    @include md-laptop {
                         padding: 8px 10px !important;
                         text-align: center;
                         margin-bottom: 15px;
@@ -49,15 +46,22 @@
                 font-family: $Avenir-light;
                 transition: inherit !important;
 
-                @include small-mobile {
+                @include md-laptop {
                     border: none !important;
                     padding: 10px 0px !important;
+                }
+
+                .submenu-parent-icon {
+                    padding: 4px !important;
                 }
             }
 
             &.menu-item-has-children {
                 .sub-menu {
-                    @include small-mobile {
+                    min-width: 10px;
+                    width: max-content !important;
+
+                    @include md-laptop {
                         padding-top: 0px !important;
                         padding-left: 5px !important;
                     }
@@ -65,6 +69,13 @@
                     .sub-menu-item {
                         padding: 0px;
 
+                        &.visa-mobile {
+                            display: none;
+
+                            @include md-laptop {
+                                display: block;
+                            }
+                        }
                     }
                 }
             }
