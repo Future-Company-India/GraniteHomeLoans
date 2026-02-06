@@ -17,6 +17,12 @@
                 color: $primary;
             }
         }
+
+        .footer-bsb-link {
+            a {
+                text-decoration: underline !important;
+            }
+        }
     }
 }
 
