@@ -18,7 +18,11 @@
             }
         }
 
-        .footer-bsb-link {}
+        .footer-bsb-link {
+            a {
+                text-decoration: underline !important;
+            }
+        }
     }
 }
 
