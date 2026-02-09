@@ -96,7 +96,7 @@ class Calculator_Columns_Widget extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Columns', 'cew'),
                 'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => '3',
+                'default' => '1',
                 'tablet_default' => '2',
                 'mobile_default' => '1',
                 'options' => [
@@ -148,7 +148,7 @@ class Calculator_Columns_Widget extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'cew'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#f5f5f5',
+                'default' => '#ffff',
                 'selectors' => [
                     '{{WRAPPER}} .calculator-card' => 'background-color: {{VALUE}};',
                 ],
@@ -160,7 +160,7 @@ class Calculator_Columns_Widget extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Hover Color', 'cew'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ebebeb',
+                'default' => '#fff',
                 'selectors' => [
                     '{{WRAPPER}} .calculator-card:hover' => 'background-color: {{VALUE}};',
                 ],
@@ -174,10 +174,10 @@ class Calculator_Columns_Widget extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'default' => [
-                    'top' => '30',
-                    'right' => '25',
-                    'bottom' => '30',
-                    'left' => '25',
+                    'top' => '15',
+                    'right' => '15',
+                    'bottom' => '15',
+                    'left' => '15',
                     'unit' => 'px',
                 ],
                 'selectors' => [
@@ -199,7 +199,7 @@ class Calculator_Columns_Widget extends \Elementor\Widget_Base {
                     ],
                 ],
                 'default' => [
-                    'size' => 16,
+                    'size' => 15,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .calculator-card' => 'border-radius: {{SIZE}}{{UNIT}};',
@@ -295,7 +295,7 @@ class Calculator_Columns_Widget extends \Elementor\Widget_Base {
                     ],
                 ],
                 'default' => [
-                    'size' => 20,
+                    'size' => 35,
                     'unit' => 'px',
                 ],
                 'selectors' => [
