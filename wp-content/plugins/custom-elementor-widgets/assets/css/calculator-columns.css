@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f0f0f0;
+    background: #fff;
     padding: 15px;
     border-radius: 15px;
     text-decoration: none;
@@ -45,8 +45,8 @@
 }
 
 .calculator-arrow img {
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
     object-fit: contain;
 }
 
