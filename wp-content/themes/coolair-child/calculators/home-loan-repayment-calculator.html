@@ -1,0 +1,108 @@
+
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+div#calculator-tab {
+    font-family: oswald-medium, oswald, sans-serif;
+}
+
+#calculator-tab .caltabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 100px;
+    padding: 5px;
+    width: fit-content;
+    border: solid 2px #46a04c;
+    margin: 0px auto 50px;
+}
+
+#calculator-tab .caltab {
+    width: 100%;
+}
+	
+#calculator-tab iframe.VisiCalcClass {
+    width: 100%;
+    height: 510px;
+}
+
+#calculator-tab iframe.weeklyCalcClass {
+    width: 100%;
+    height: 765px!important;
+}
+	
+#calculator-tab div#tab-weekly {
+    display: none;
+}
+
+#calculator-tab .calcutab {
+    border-radius: 100px;
+    padding: 8px 31px !important;
+    color: #888;
+    font-size: 18px !important;
+    line-height: 28px;
+    font-weight: 700 !important;
+    cursor: pointer;
+}
+
+#calculator-tab .calselect {
+    color: #fff !important;
+    background-color: #46a04c;
+    cursor: auto;
+}
+
+#calculator-tab .calcutab:hover {
+    color: #000;
+}
+
+@media (max-width: 768px) {
+	#calculator-tab .caltabs {
+    	display: flex;
+    	flex-direction: column;
+   		border-radius: 20px;
+	}
+}
+</style>
+</head>
+<body>
+
+</body>
+</html>
+<div id="calculator-tab">
+    <div class="caltabs">
+        <div id="cal-monthly" class="calcutab calselect">Monthly Repayment</div>
+        <div id="cal-weekly" class="calcutab">Fortnightly & weekly repayment</div>
+    </div>
+    <div class="caltab">
+        <div id="tab-monthly" class="calsection tabselect">
+            <iframe class="VisiCalcClass" id="Loan_Repayment_Calculator" src="https://www.visionabacus.net/Tools/B3/SuiteA/G100/Loan_Repayment_Calculator_MT/Granite" frameborder="0" scrolling="no"></iframe>
+        </div>
+        <div id="tab-weekly" class="calsection">
+            <iframe class="weeklyCalcClass" id="Fortnightly_Repayment_Calculator" src="https://www.visionabacus.net/Tools/B3/SuiteA/G100/Fortnightly_Repayment_Calculator_MT/Granite" frameborder="0" scrolling="no" style="height:800px"></iframe>
+        </div>
+    </div>
+</div>
+<script>
+var tabid = "";
+if (jQuery) {
+    jQuery(document).ready(function($) {        
+        $(".calcutab").on("click", function() {
+            var tabdetails = $(this).attr('id');
+            tabid = tabdetails.split("-");
+            var currSrc = $("#tab-"+tabid[1]+" iframe").attr("src");
+            $(".calsection.tabselect").fadeOut(100,function() {
+                $("#tab-"+tabid[1]).fadeIn(100,function() {
+                    $("#tab-"+tabid[1]+" iframe").attr("src", currSrc);
+                }).addClass('tabselect');
+            }).removeClass("tabselect");
+            $(".calcutab").removeClass("calselect");
+            $(this).addClass('calselect');
+        });
+    });
+}
+</script>
