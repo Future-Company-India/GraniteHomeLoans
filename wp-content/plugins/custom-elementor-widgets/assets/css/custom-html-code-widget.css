@@ -1,0 +1,38 @@
+/**
+ * Elementor HTML Code Widget Styles
+ */
+
+.html-code-container {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.html-code-container.auto-height {
+    height: auto;
+}
+
+.html-code-container.custom-height {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure content within container respects box-sizing */
+.html-code-container * {
+    box-sizing: border-box;
+}
+
+/* Smooth transitions for responsive changes */
+.html-code-container {
+    transition: height 0.3s ease, min-height 0.3s ease, max-height 0.3s ease;
+}
+
+/* Override Elementor default styles if needed */
+.elementor-widget-html_code_widget {
+    position: relative;
+}
+
+/* Ensure proper rendering in editor mode */
+.elementor-editor-active .html-code-container {
+    min-height: 50px;
+}
