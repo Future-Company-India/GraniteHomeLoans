@@ -33,7 +33,7 @@
                     @include md-laptop {
                         padding: 8px 10px !important;
                         text-align: center;
-                        margin-bottom: 15px;
+                        margin-bottom: 0px;
                     }
                 }
             }
@@ -82,7 +82,8 @@
                         &.menu-item-has-children {
                             .sub-menu {
                                 top: -29%;
-                                right: -157%;
+                                right: 100%;
+                                left: 104%;
                             }
                         }
                     }
