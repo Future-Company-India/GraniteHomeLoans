@@ -82,7 +82,7 @@ class Elementor_HTML_Code_Custom_Widget extends \Elementor\Widget_Base
       "range" => [
         "px" => [
           "min" => 0,
-          "max" => 1000,
+          "max" => 3000,
           "step" => 1,
         ],
         "vh" => [
