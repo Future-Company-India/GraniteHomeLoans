@@ -5,6 +5,8 @@
     grid-template-columns: repeat(2, 1fr);
     max-width: 1200px;
     margin: 0 auto;
+    justify-items: center;
+    row-gap: 10px;
 }
 
 .team-member-card {
@@ -15,6 +17,15 @@
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Center single card when odd number */
+.team-member-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 50%;
 }
 
 .team-member-image {
@@ -195,6 +206,7 @@
 /* Mobile View - Single Column Layout (as per Image 2) */
 @media (max-width: 768px) {
     .team-members-container {
+        grid-template-columns: 1fr !important;
         gap: 24px;
     }
     
@@ -202,6 +214,12 @@
         flex-direction: column;
         width: 100%;
         margin: 0 auto;
+    }
+    
+    /* Reset centering on mobile since it's single column */
+    .team-member-card:last-child:nth-child(odd) {
+        grid-column: auto;
+        max-width: 100%;
     }
     
     .team-member-image {
