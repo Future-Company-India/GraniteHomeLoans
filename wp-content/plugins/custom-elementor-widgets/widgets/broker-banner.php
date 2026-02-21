@@ -276,11 +276,66 @@ class Broker_Banner_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'banner_image',
             [
-                'label' => esc_html__( 'Choose Image', 'broker-banner' ),
+                'label' => esc_html__( 'Desktop Image', 'broker-banner' ),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
+            ]
+        );
+
+        $this->add_control(
+            'banner_image_mobile',
+            [
+                'label' => esc_html__( 'Mobile Image (optional)', 'broker-banner' ),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [],
+                'description' => esc_html__( 'Shown on screens ≤767px. Leave empty to use desktop image on all devices.', 'broker-banner' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_sizes_heading',
+            [
+                'label' => esc_html__( 'Responsive sizes (hint for browser)', 'broker-banner' ),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'image_sizes_desktop',
+            [
+                'label' => esc_html__( 'Desktop width (px)', 'broker-banner' ),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 553,
+                'min' => 100,
+                'max' => 2000,
+                'description' => esc_html__( 'Approximate display width on desktop for srcset/sizes.', 'broker-banner' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_sizes_mobile',
+            [
+                'label' => esc_html__( 'Mobile width (px)', 'broker-banner' ),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 242,
+                'min' => 50,
+                'max' => 1000,
+                'description' => esc_html__( 'Approximate display width on mobile for srcset/sizes.', 'broker-banner' ),
+            ]
+        );
+
+        $this->add_control(
+            'mobile_breakpoint',
+            [
+                'label' => esc_html__( 'Mobile breakpoint (px)', 'broker-banner' ),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 767,
+                'min' => 320,
+                'max' => 1200,
+                'description' => esc_html__( 'Max width at which mobile image is shown (when set).', 'broker-banner' ),
             ]
         );
 
@@ -675,9 +730,63 @@ class Broker_Banner_Widget extends \Elementor\Widget_Base {
         </div>
 
         <div class="broker-banner-image">
-            <?php if ( ! empty( $settings['banner_image']['url'] ) ) : ?>
-            <img src="<?php echo esc_url( $settings['banner_image']['url'] ); ?>" alt="">
-            <?php endif; ?>
+            <?php
+            if ( ! empty( $settings['banner_image']['url'] ) ) {
+                $desktop_url   = $settings['banner_image']['url'];
+                $desktop_id    = isset( $settings['banner_image']['id'] ) ? (int) $settings['banner_image']['id'] : 0;
+                $mobile_url    = ! empty( $settings['banner_image_mobile']['url'] ) ? $settings['banner_image_mobile']['url'] : '';
+                $sizes_desktop = ! empty( $settings['image_sizes_desktop'] ) ? (int) $settings['image_sizes_desktop'] : 553;
+                $sizes_mobile  = ! empty( $settings['image_sizes_mobile'] ) ? (int) $settings['image_sizes_mobile'] : 242;
+                $breakpoint    = ! empty( $settings['mobile_breakpoint'] ) ? (int) $settings['mobile_breakpoint'] : 767;
+                $sizes_attr    = sprintf( '(max-width: %1$dpx) %2$dpx, %3$dpx', $breakpoint, $sizes_mobile, $sizes_desktop );
+                $img_w         = $sizes_desktop;
+                $img_h         = (int) round( $sizes_desktop * ( 325 / 553 ) );
+                if ( $desktop_id && function_exists( 'wp_get_attachment_metadata' ) ) {
+                    $meta = wp_get_attachment_metadata( $desktop_id );
+                    if ( ! empty( $meta['width'] ) && ! empty( $meta['height'] ) ) {
+                        $img_w = (int) $meta['width'];
+                        $img_h = (int) $meta['height'];
+                    }
+                }
+                $img_attrs = [
+                    'fetchpriority' => 'high',
+                    'alt'           => '',
+                    'style'         => 'object-fit:cover',
+                    'sizes'         => $sizes_attr,
+                    'width'         => $img_w,
+                    'height'        => $img_h,
+                ];
+                if ( $mobile_url && $mobile_url !== $desktop_url ) {
+                    echo '<picture>';
+                    echo '<source media="(max-width: ' . esc_attr( $breakpoint . 'px' ) . ')" srcset="' . esc_url( $mobile_url ) . ' 1x">';
+                    if ( $desktop_id && function_exists( 'wp_get_attachment_image_srcset' ) ) {
+                        $img_attrs['srcset'] = wp_get_attachment_image_srcset( $desktop_id, 'full' );
+                    }
+                    $img_attrs['src'] = $desktop_url;
+                    echo '<img ';
+                    foreach ( $img_attrs as $k => $v ) {
+                        if ( (string) $v !== '' ) {
+                            echo esc_attr( $k ) . '="' . esc_attr( $v ) . '" ';
+                        }
+                    }
+                    echo '>';
+                    echo '</picture>';
+                } else {
+                    if ( $desktop_id && function_exists( 'wp_get_attachment_image' ) ) {
+                        echo wp_get_attachment_image( $desktop_id, 'full', false, array_merge( $img_attrs, [ 'loading' => 'eager' ] ) );
+                    } else {
+                        $img_attrs['src'] = $desktop_url;
+                        echo '<img ';
+                        foreach ( $img_attrs as $k => $v ) {
+                            if ( (string) $v !== '' ) {
+                                echo esc_attr( $k ) . '="' . esc_attr( $v ) . '" ';
+                            }
+                        }
+                        echo '>';
+                    }
+                }
+            }
+            ?>
         </div>
     </div>
 </div>
@@ -691,7 +800,8 @@ class Broker_Banner_Widget extends \Elementor\Widget_Base {
     button1_nofollow=settings.button1_link.nofollow ? ' rel="nofollow"' : '' ; var
     button2_target=settings.button2_link.is_external ? ' target="_blank"' : '' ; var
     button2_nofollow=settings.button2_link.nofollow ? ' rel="nofollow"' : '' ; var
-    reverse_class=( 'yes'===settings.reverse_columns ) ? ' reverse-columns' : '' ; #>
+    reverse_class=( 'yes'===settings.reverse_columns ) ? ' reverse-columns' : '' ; var
+    bp=settings.mobile_breakpoint||767; var sd=settings.image_sizes_desktop||553; var sm=settings.image_sizes_mobile||242; var sizesAttr='(max-width: '+bp+'px) '+sm+'px, '+sd+'px'; #>
 
     <div class="broker-banner-container">
         <div class="broker-banner-content{{{ reverse_class }}}">
@@ -728,9 +838,17 @@ class Broker_Banner_Widget extends \Elementor\Widget_Base {
             </div>
 
             <div class="broker-banner-image">
-                <# if ( settings.banner_image.url ) { #>
-                    <img src="{{ settings.banner_image.url }}" alt="">
-                    <# } #>
+                <# if ( settings.banner_image.url ) {
+                    var imgW = settings.image_sizes_desktop || 553;
+                    var imgH = Math.round( imgW * ( 325 / 553 ) );
+                    if ( settings.banner_image_mobile && settings.banner_image_mobile.url && settings.banner_image_mobile.url !== settings.banner_image.url ) { #>
+                    <picture>
+                        <source media="(max-width: {{ bp }}px)" srcset="{{ settings.banner_image_mobile.url }} 1x">
+                        <img src="{{ settings.banner_image.url }}" sizes="{{ sizesAttr }}" fetchpriority="high" width="{{ imgW }}" height="{{ imgH }}" alt="" style="object-fit:cover">
+                    </picture>
+                    <# } else { #>
+                    <img src="{{ settings.banner_image.url }}" sizes="{{ sizesAttr }}" fetchpriority="high" width="{{ imgW }}" height="{{ imgH }}" alt="" style="object-fit:cover">
+                    <# } } #>
             </div>
         </div>
     </div>

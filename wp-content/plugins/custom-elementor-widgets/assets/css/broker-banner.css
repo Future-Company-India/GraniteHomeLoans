@@ -82,11 +82,13 @@
     align-items: center;
 }
 
+/* width/height attributes are output by the widget to prevent CLS (layout shift) */
 .broker-banner-image img {
     max-width: 100%;
     height: auto;
     display: block;
     border-radius: 8px;
+    vertical-align: middle;
 }
 
 /* Responsive Design */
